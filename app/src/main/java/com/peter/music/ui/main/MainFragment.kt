@@ -15,11 +15,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.peter.music.ApiStatus
 import com.peter.music.databinding.FragmentMainBinding
-import com.peter.music.service.TracksUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import javax.inject.Inject
 
 
 @ExperimentalCoroutinesApi
@@ -56,7 +54,6 @@ class MainFragment : Fragment() {
             })
         }
 
-
         viewModel.apply {
             selectedItem.observe(viewLifecycleOwner) {
                 if (null != it) {
@@ -76,7 +73,5 @@ class MainFragment : Fragment() {
             }
         }
         return binding.root
-
-
     }
 }

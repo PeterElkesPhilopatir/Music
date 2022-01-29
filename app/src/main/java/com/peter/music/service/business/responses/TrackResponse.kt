@@ -1,9 +1,7 @@
-package com.peter.music.service.responses
+package com.peter.music.service.business.responses
 
 import com.google.gson.annotations.SerializedName
 import com.peter.music.pojo.MainArtist
-import com.peter.music.pojo.Track
-import kotlin.random.Random
 
 data class TrackResponse(
     @SerializedName("duration")

@@ -3,11 +3,10 @@ package com.peter.music.service
 import android.util.Log
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
-import com.peter.music.BuildConfig
 import com.peter.music.HeadersKey
 import com.peter.music.HeadersValue
 import com.peter.music.pojo.Track
-import com.peter.music.service.responses.TrackResponse
+import com.peter.music.service.business.responses.TrackResponse
 import java.net.HttpURLConnection
 import kotlin.random.Random
 

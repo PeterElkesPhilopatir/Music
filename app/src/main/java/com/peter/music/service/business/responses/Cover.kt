@@ -1,4 +1,4 @@
-package com.peter.music.service.responses
+package com.peter.music.service.business.responses
 
 data class Cover(
     val large: String?,

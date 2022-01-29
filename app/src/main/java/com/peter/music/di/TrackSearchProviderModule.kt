@@ -1,14 +1,13 @@
 package com.peter.music.di
 
-import com.peter.music.pojo.Track
 import com.peter.music.service.*
-import com.peter.music.service.repository.TracksRepo
-import com.peter.music.service.repository.TracksRepoImpl
+import com.peter.music.service.business.repository.TracksRepo
+import com.peter.music.service.business.repository.TracksRepoImpl
+import com.peter.music.service.business.usecase.TracksUseCase
+import com.peter.music.service.business.usecase.TracksUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
