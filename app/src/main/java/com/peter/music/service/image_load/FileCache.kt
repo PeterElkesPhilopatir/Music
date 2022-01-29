@@ -20,7 +20,7 @@ class FileCache(context: Context) {
         //Find the dir to save cached images
         if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) cacheDir = File(
             Environment.getExternalStorageDirectory(), "TempImages"
-        ) else cacheDir = context.getCacheDir()
+        ) else cacheDir = context.cacheDir
         if (!cacheDir!!.exists()) cacheDir!!.mkdirs()
     }
 }

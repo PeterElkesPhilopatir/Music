@@ -23,6 +23,6 @@ data class TrackResponse(
     @SerializedName("cover")
     val cover: Cover?,
 
-)
+    )
 
 

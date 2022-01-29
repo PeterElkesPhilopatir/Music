@@ -43,7 +43,7 @@ class ImageLoader(context: Context?) {
         val b = decodeFile(f)
         return b
             ?: try {
-                var bitmap: Bitmap? = null
+                var bitmap: Bitmap?
                 val imageUrl = URL(url)
                 val conn = imageUrl.openConnection() as HttpURLConnection
                 conn.connectTimeout = 30000

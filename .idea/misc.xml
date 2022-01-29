@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Apps/Music/app/src/main/res/drawable-anydpi/ic_share.xml" value="0.107" />
+        <entry key="..\:/Apps/Music/app/src/main/res/drawable-v24/ic_broken_image.xml" value="0.107" />
         <entry key="..\:/Apps/Music/app/src/main/res/drawable-v24/trending_gradient_shape.xml" value="0.1125" />
         <entry key="..\:/Apps/Music/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Apps/Music/app/src/main/res/layout/fragment_details.xml" value="0.18" />
+        <entry key="..\:/Apps/Music/app/src/main/res/layout/fragment_details.xml" value="0.16" />
         <entry key="..\:/Apps/Music/app/src/main/res/layout/fragment_main.xml" value="0.1" />
+        <entry key="..\:/Apps/Music/app/src/main/res/layout/fragment_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Apps/Music/app/src/main/res/layout/track_item.xml" value="0.2" />
       </map>
     </option>

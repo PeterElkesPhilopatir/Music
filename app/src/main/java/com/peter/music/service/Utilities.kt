@@ -13,9 +13,7 @@ import kotlin.random.Random
 
 object Utilities {
 
-    fun setDefaultHttpHeaders(httpURLConnection: HttpURLConnection) {
-        httpURLConnection.requestMethod = "POST"
-        httpURLConnection.setRequestProperty(HeadersKey.GATEWAY_KEY, BuildConfig.GATEWAY_KEY_VALUE)
+    fun setHeaders(httpURLConnection: HttpURLConnection) {
         httpURLConnection.setRequestProperty(HeadersKey.ACCEPT, HeadersValue.APP_JSON)
         httpURLConnection.setRequestProperty(
             HeadersKey.CONTENT_TYPE,
@@ -32,7 +30,7 @@ object Utilities {
         val response = StringBuffer()
         try {
             this.inputStream.bufferedReader().use { reader ->
-                var input = ""
+                var input: String
                 while (reader.readLine().also { input = it } != null)
                     response.append(input)
             }
@@ -47,8 +45,8 @@ object Utilities {
 }
 
 fun TrackResponse.parseToPlainObject() = Track(
-    id = this.id ?:  (1..5)
-        .map { i -> Random.nextInt(0, 26+9) }
+    id = this.id ?: (1..5)
+        .map { Random.nextInt(0, 26 + 9) }
         .map("abcdefghijklmnopqrstuvwxyz123456789"::get)
         .joinToString(""),
     title = this.title ?: "",

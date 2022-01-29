@@ -10,4 +10,4 @@ data class Authentication(
     @SerializedName("tokenType")
     val tokenType: String = "Bearer"
 
-    )
+)

@@ -7,12 +7,15 @@ import com.peter.music.PrefKeys.PREF_TOKEN
 
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
+
 interface TokenSource {
 
     fun saveToken(token: String)
     fun getToken(): String
 
-}class TokenSourceImpl @Inject constructor(
+}
+
+class TokenSourceImpl @Inject constructor(
     @ApplicationContext context: Context
 ) : TokenSource {
     private val sharedPref = context.getSharedPreferences(

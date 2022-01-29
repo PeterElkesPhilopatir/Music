@@ -4,16 +4,18 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.peter.music.pojo.Track
 
-class DetailsViewModel(@Suppress("UNUSED_PARAMETER") track: Track, app: Application) :
-    AndroidViewModel(app) {
+class DetailsViewModel() :
+    ViewModel() {
 
     private val _selectedProperty = MutableLiveData<Track>()
     val selectedProperty: LiveData<Track>
         get() = _selectedProperty
 
-    init {
-        _selectedProperty.value = track
+    fun setProperty(track: Track) {
+     _selectedProperty.value = track
     }
+
 }

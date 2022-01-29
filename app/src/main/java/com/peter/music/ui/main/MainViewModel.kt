@@ -1,39 +1,54 @@
 package com.peter.music.ui.main
 
-import android.app.Application
-import android.util.Log
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
-import com.peter.music.MyApplication
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.peter.music.ApiStatus
 import com.peter.music.pojo.Track
-import com.peter.music.service.SearchSource
 import com.peter.music.service.TracksUseCase
-import com.peter.music.service.repository.TracksRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+import java.net.HttpRetryException
 import javax.inject.Inject
+import kotlinx.coroutines.flow.asFlow
+
 @FlowPreview
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class MainViewModel @Inject constructor(private val usecase : TracksUseCase) :
+class MainViewModel @Inject constructor(private val usecase: TracksUseCase) :
     ViewModel() {
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.IO)
     private val _data = MutableLiveData<List<Track>>()
     val data: LiveData<List<Track>>
         get() = _data
 
-    val query = MutableLiveData<String>()
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
-    init {
-        onSearch()
+    private val _selectedItem = MutableLiveData<Track>()
+    val selectedItem: LiveData<Track>
+        get() = _selectedItem
+
+
+    fun onSearch(query: String) {
+        if (query.length > 2) {
+            _status.value = ApiStatus.LOADING
+            _data.value = ArrayList()
+            coroutineScope.launch {
+                usecase.getTracks(query, _data, _status)
+            }
+        } else _data.value = ArrayList()
     }
 
-      fun onSearch() {
-          Log.i("ViewModel","created")
+    fun displayPropertyDetails(property: Track) {
+        _selectedItem.value = property
+    }
 
-          viewModelScope.launch {
-            usecase.getTracks("asd")
-        }
+    fun displayPropertyDetailsComplete() {
+        _selectedItem.value = null
     }
 }

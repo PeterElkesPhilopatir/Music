@@ -17,21 +17,24 @@ import java.net.HttpURLConnection.HTTP_OK
 import com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES
 import com.peter.music.service.Utilities.getStringResponse
 import com.peter.music.service.Utilities.gsonify
-import com.peter.music.service.Utilities.setDefaultHttpHeaders
+import com.peter.music.service.Utilities.setHeaders
 import com.peter.music.service.responses.Authentication
 import java.net.Authenticator
 import javax.inject.Inject
 
-interface Auth{
+interface Auth {
     fun authenticate()
 }
+
 class AuthImpl @Inject constructor(private val token: TokenSource) :
     Auth {
     override fun authenticate() {
         val getTokenUrl = "$BASE_URL$TOKEN"
         val url = URL(getTokenUrl)
         val httpConnection = url.openConnection() as HttpURLConnection
-        setDefaultHttpHeaders(httpConnection)
+        httpConnection.requestMethod = "POST"
+        httpConnection.setRequestProperty(GATEWAY_KEY, GATEWAY_KEY_VALUE)
+        setHeaders(httpConnection)
         httpConnection.connect()
         Log.i("Auth", httpConnection.responseMessage)
         Log.i("Auth", httpConnection.responseCode.toString())
@@ -42,6 +45,7 @@ class AuthImpl @Inject constructor(private val token: TokenSource) :
         }
         httpConnection.disconnect()
     }
+
     private fun parseToken(connection: HttpURLConnection) =
         gsonify().fromJson(connection.getStringResponse(), Authentication::class.java)
 

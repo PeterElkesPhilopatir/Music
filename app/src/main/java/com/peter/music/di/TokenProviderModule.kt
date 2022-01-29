@@ -13,8 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class TokenProviderModule {
-
     @Binds
-    abstract fun bindPrefsStore(tokenStore: TokenSourceImpl): TokenSource
-
+    abstract fun bindTokensStore(tokenSourceImpl: TokenSourceImpl): TokenSource
 }
