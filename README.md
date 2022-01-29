@@ -37,6 +37,8 @@ BASE_URL="YOUR_BASE_URL"
 
 *  [Navigation](https://developer.android.com/guide/navigation)
 
+*  [Flow](https://developer.android.com/kotlin/flow)
+
 
 
 
