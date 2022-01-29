@@ -27,6 +27,6 @@ object PrefKeys {
 
 }
 
-enum class ApiStatus { LOADING, DONE,ERROR }
+enum class ApiStatus { LOADING, DONE,ERROR,EMPTY }
 
 

@@ -12,11 +12,10 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-
 import com.peter.music.pojo.Track
+import com.peter.music.service.image_load.ImageLoader
 import com.peter.music.ui.main.TracksAdapter
 import java.net.URL
 import kotlin.concurrent.thread

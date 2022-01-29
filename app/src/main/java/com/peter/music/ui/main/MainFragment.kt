@@ -71,6 +71,8 @@ class MainFragment : Fragment() {
             status.observe(viewLifecycleOwner) {
                 if (it == ApiStatus.ERROR)
                     Toast.makeText(context, "API Error", Toast.LENGTH_SHORT).show()
+                if (it == ApiStatus.EMPTY)
+                    Toast.makeText(context, "Empty", Toast.LENGTH_SHORT).show()
             }
         }
         return binding.root

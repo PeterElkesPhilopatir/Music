@@ -29,7 +29,7 @@ interface SearchSource {
     suspend fun searchForTrack(
         query: String,
         liveData: MutableLiveData<List<Track>>,
-        status : MutableLiveData<ApiStatus>
+        status: MutableLiveData<ApiStatus>
     )
 }
 
@@ -37,7 +37,11 @@ class SearchSourceImpl @Inject constructor(
     private val token: TokenSource,
     private val auth: Auth
 ) : SearchSource {
-    override suspend fun searchForTrack(query: String, liveData: MutableLiveData<List<Track>>,status : MutableLiveData<ApiStatus>) {
+    override suspend fun searchForTrack(
+        query: String,
+        liveData: MutableLiveData<List<Track>>,
+        status: MutableLiveData<ApiStatus>
+    ) {
         val token = token.getToken()
         val queryParam = "?$QUERY=$query"
         val accessParam = "&$ACCESSTOKEN=$BEARER $token"
@@ -61,14 +65,17 @@ class SearchSourceImpl @Inject constructor(
                     val list = responseList.filter { it.title != null }
                         .map { it.parseToPlainObject() }
                     liveData.postValue(list)
-                    status.postValue(ApiStatus.DONE)
+                    if (list.isEmpty())
+                        status.postValue(ApiStatus.EMPTY)
+                    else status.postValue(ApiStatus.DONE)
+
                 }
                 HttpURLConnection.HTTP_UNAUTHORIZED -> {
                     Log.i("Auth", "Not authenticated")
                     auth.authenticate()
                     liveData.postValue(ArrayList<Track>())
                 }
-                HttpURLConnection.HTTP_NOT_FOUND->{
+                HttpURLConnection.HTTP_NOT_FOUND -> {
                     liveData.postValue(ArrayList<Track>())
                     status.postValue(ApiStatus.ERROR)
                 }
